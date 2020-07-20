@@ -1,2 +1,1 @@
-Roman 100
-John 200
+Roman 150
