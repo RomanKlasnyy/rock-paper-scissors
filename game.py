@@ -39,6 +39,24 @@ def update_user():
                 fout.write(new_r_str + '\n')
 
 
+def help_option():
+    if default_game:
+        game_type = 'classic version'
+    else:
+        game_type = 'your optional version'
+    print(f'Hi, {name}. You are playing {game_type} of the game')
+    print('Your available options for the game are:')
+    print(options)
+    print()
+    print('To play a game, type one of the options')
+    print('The option beats the next half of options, but loses to the previous ones')
+    print('If you win, you get +100 points. Draw: +50 points. Lose: +0 points')
+    print()
+    print('Type "!exit" to exit your game. Your score will be added/updated to "rating.txt"')
+    print('Type "!rating" to get your current score')
+    print('Type "!help" to get this message one more time')
+
+
 gestures = input('Press Enter for a classic game or write options separated by a comma (rock,paper,scissors,lizard)')
 if gestures == '':
     options = ['rock', 'scissors', 'paper']
@@ -62,18 +80,21 @@ if default_game is True:
         if action == '!rating':
             print(f'Your rating: {score}')
             continue
+        if action == '!help':
+            help_option()
+            continue
         if action == 'rock' or action == 'scissors' or action == 'paper':
             if action == c_action:
-                print(f'There is a draw ({action})')
+                print(f'There is a draw ({action}) (+50 points)')
                 score += 50
             elif action == 'rock' and c_action == 'scissors':
-                print('Well done. Computer chose scissors and failed')
+                print('Well done. Computer chose scissors and failed (+100 points)')
                 score += 100
             elif action == 'scissors' and c_action == 'paper':
-                print('Well done. Computer chose paper and failed')
+                print('Well done. Computer chose paper and failed (+100 points)')
                 score += 100
             elif action == 'paper' and c_action == 'rock':
-                print('Well done. Computer chose rock and failed')
+                print('Well done. Computer chose rock and failed (+100 points)')
                 score += 100
             elif action == 'rock' and c_action == 'paper':
                 print('Sorry, but computer chose paper')
@@ -82,7 +103,7 @@ if default_game is True:
             elif action == 'paper' and c_action == 'scissors':
                 print('Sorry, but computer chose scissors')
         else:
-            print('Invalid input')
+            print('Invalid input. Type "!help" for help')
 elif len(options) % 2 != 0:
     while True:
         action = input()
@@ -97,27 +118,30 @@ elif len(options) % 2 != 0:
         if action == '!rating':
             print(f'Your rating: {score}')
             continue
+        if action == '!help':
+            help_option()
+            continue
         if action in options:
             half_list = int((len(options) - 1) / 2)
             action_id = options.index(action)
             c_action_id = options.index(c_action)
             if action == c_action:
-                print(f'There is a draw ({action})')
+                print(f'There is a draw ({action}) (+50 points)')
                 score += 50
             elif action_id + half_list <= len(options):
                 if c_action_id > action_id >= c_action_id - half_list:
                     print(f'Sorry, but computer chose {c_action}')
                 else:
-                    print(f'Well done. Computer chose {c_action} and failed')
+                    print(f'Well done. Computer chose {c_action} and failed (+100 points)')
                     score += 100
             else:
                 if c_action_id < action_id <= c_action_id + half_list:
-                    print(f'Well done. Computer chose {c_action} and failed')
+                    print(f'Well done. Computer chose {c_action} and failed (+100 points)')
                     score += 100
                 else:
                     print(f'Sorry, but computer chose {c_action}')
         else:
-            print('Invalid input')
+            print('Invalid input. Type "!help" for help')
 elif len(options) % 2 == 0:
     while True:
         action = input()
@@ -132,24 +156,27 @@ elif len(options) % 2 == 0:
         if action == '!rating':
             print(f'Your rating: {score}')
             continue
+        if action == '!help':
+            help_option()
+            continue
         if action in options:
             half_list = int(len(options) / 2)
             action_id = options.index(action)
             c_action_id = options.index(c_action)
             if action == c_action or action_id == c_action_id + half_list or action_id == c_action_id - half_list:
-                print(f'There is a draw ({c_action})')
+                print(f'There is a draw ({c_action}) (+50 points)')
                 score += 50
             elif action_id + half_list <= len(options):
                 if c_action_id > action_id >= c_action_id - half_list:
                     print(f'Sorry, but computer chose {c_action}')
                 else:
-                    print(f'Well done. Computer chose {c_action} and failed')
+                    print(f'Well done. Computer chose {c_action} and failed (+100 points)')
                     score += 100
             else:
                 if c_action_id < action_id <= c_action_id + half_list:
-                    print(f'Well done.Tim Computer chose {c_action} and failed')
+                    print(f'Well done.Tim Computer chose {c_action} and failed (+100 points)')
                     score += 100
                 else:
                     print(f'Sorry, but computer chose {c_action}')
         else:
-            print('Invalid input')
+            print('Invalid input. Type "!help" for help')
