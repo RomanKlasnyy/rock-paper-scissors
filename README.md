@@ -17,3 +17,6 @@ Enter your name and elements for a game. If you don't play classic game, the wri
 | 9 | rock,gun,water,air,paper,sponge,human,scissors,fire |
 | 15 | rock,gun,lightning,devil,dragon,water,air,paper,sponge,wolf,tree,human,snake,scissors,fire |
 
+# warning
+
+I updated the rating system. Now it automatically adds and updates the rating for new and old players. You need to have a 'rating.txt' file in the directory with at least one score (ex. 'Roman 100') and a new line! It reads the file to check if your name is in the rating. You can download this file here as an example.
