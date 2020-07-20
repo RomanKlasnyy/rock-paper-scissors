@@ -9,7 +9,8 @@ Enter your name and elements for a game. If you don't play classic game, the wri
   - You get 50 points for a draw;
   - You get 0 points for a lose;
   - Type `!rating` to get your current score;
-  - Type `!exit` to end the current game series.
+  - Type `!exit` to end the current game series;
+  - Type `!help` to get all commands you can type.
 
 | Elements count | What should you type |
 | ------ | ------ |
