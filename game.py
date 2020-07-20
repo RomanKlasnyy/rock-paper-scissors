@@ -5,21 +5,38 @@ default_game = False
 name = input('Enter your name: ')
 print(f'Hello, {name}')
 score = 0
+old_score = 0
 new_usr = True
+new_rating = []
 
-read_f = open('rating.txt', 'r+')
-for line in read_f:
-    line_str = line.split()
-    if name == line_str[0]:
-        score = int(line_str[1])
-        new_usr = False
-read_f.close()
+with open('rating.txt', 'r') as f:
+    for line in f:
+        line_str = line.strip()
+        line_list = line_str.split()
+        if name == line_list[0]:
+            new_usr = False
+            score = int(line_list[1])
+            old_score = int(line_list[1])
 
 
 def new_user():
-    o_file = open('rating.txt', 'a')
-    o_file.write(f'{name} {score}\n')
-    o_file.close()
+    with open('rating.txt', 'a') as o_file:
+        o_file.write(f'{name} {score}\n')
+
+
+def update_user():
+    with open('rating.txt', 'r') as fin:
+        for data in fin:
+            data_str = data.strip()
+            data_list = data_str.split()
+            print(new_rating)
+            if name == data_list[0]:
+                new_rating.append(f'{name} {score}')
+            else:
+                new_rating.append(data_str)
+            new_r_str = '\n'.join(new_rating)
+            with open('rating.txt', 'w') as fout:
+                fout.write(new_r_str + '\n')
 
 
 gestures = input('Press Enter for a classic game or write options separated by a comma (rock,paper,scissors,lizard)')
@@ -39,6 +56,8 @@ if default_game is True:
             print('Bye!')
             if new_usr:
                 new_user()
+            else:
+                update_user()
             break
         if action == '!rating':
             print(f'Your rating: {score}')
@@ -72,6 +91,8 @@ elif len(options) % 2 != 0:
             print('Bye!')
             if new_usr:
                 new_user()
+            else:
+                update_user()
             break
         if action == '!rating':
             print(f'Your rating: {score}')
@@ -105,6 +126,8 @@ elif len(options) % 2 == 0:
             print('Bye!')
             if new_usr:
                 new_user()
+            else:
+                update_user()
             break
         if action == '!rating':
             print(f'Your rating: {score}')
