@@ -23,6 +23,7 @@ Enter your name and elements for a game. If you don't play classic game, the wri
 I updated the rating system. Now it automatically adds and updates the rating for new and old players. You need to have a 'rating.txt' file in the directory with at least one score (ex. 'Roman 100') and a new line! It reads the file to check if your name is in the rating. You can download this file here as an example.
 
 ## Supported languages:
+- C
 - Go (1.22.0)
 - Java SE 21 (LTS)
 - Python (3.9)
